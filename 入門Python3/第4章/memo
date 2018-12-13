@@ -1,0 +1,81 @@
+第4章 Pyの皮：コード構造
+
+■#によるコメント
+#でコメント化可能。複数行コメントはない。
+
+■\による行の継続
+\があれば行は継続されているものとみなされる。
+
+■if,elif,elseによる比較
+普通にif,else
+Falseとみなされるものはfalse以外に0や空文字なんかも入る。
+
+■while
+普通にwhile
+breakで中断できる。
+continueで継続できる。
+elseを使えばbreakが呼び出されていないときの処理に使える。
+
+■forによる反復処理
+普通にforで反復処理が可能。
+forでもbreak、continue、elseのbreakチェックが可能。
+zip関数を利用することでforの並列処理が可能。
+rangeでリストを作ることも可能。
+
+■内包表記
+一つ以上のイテレータからデータ構造をコンパクトに作れる形式。
+1～5の整数のリストはappendでも作れるがrangeとforでも作れる。
+listでも可能。
+list内包表記で書く方がPythonらしい。
+number_list = [number for number in range(1,6)]
+奇数のリストを作るなら以下
+a_list = [number for number in range(1,6) if number % 2 == 1]
+
+これを使うと以下のようなコードを
+rows = range(1,4)
+cols = range(1,3)
+for row in rows:
+    for col in cols:
+        print(row,col)
+以下のようにかける
+rows = range(1,4)
+cols = range(1,3)
+cells = [(row,col) for row in rows for col in cols]
+for cell in cells:
+    print(cell)
+
+・辞書内包表記
+以下のコードで指定された文字列の文字数をカウントすることができる。
+word = "letters"
+letter_count = {letter: word.count(letter) for letter in set(word)}
+letter_count
+setで集合にしたものをfor文で回して辞書型にしたもの。
+
+集合も集合内包表記があるがタプルにはない。
+タプルで同じようにするとジェネレータ内包表記になる。
+
+■関数
+プログラマは関数に対して定義と呼び出しが可能。
+デフォルト引数も用意することが可能。
+その場合、変数＝デフォルト値で指定する。
+*変数で指定するとタプルで指定できる。
+**の場合は辞書型
+
+関数を定義してそのあとに文字列を組み込むと関数定義にドキュメントを追加することができる。
+
+■ジェネレータ
+ジェネレータはPythonシーケンスを作成するオブジェクト。
+ジェネレータを利用しているとメモリに格納することなく反復処理が可能。
+
+■デコレータ
+デコレータは入力として関数をひとつ取り別の関数を返す関数。
+
+■名前空間とスコープ
+名前空間とは特定の名前の意味が一意に決まり他の名前空間の同じ名前とは無関係になるもの。
+
+__が先頭と末尾についているものはPythonが予約している変数。
+
+■エラー処理とtry、except
+tryブロックを実行して失敗したらexceptブロックが実行される。
+独自例外の作成も可能。
+

@@ -1,0 +1,17 @@
+第8章 データの行き先
+■ファイル入出力
+単純なタイプの永続記憶はファイル。ファイルに書き込み読み出す。
+write()で書き込み、read()で読み込み。
+
+オープンファイルなどをクリーンアップするためにコンテキストマネージャを持っている。
+これを利用するためには以下のようにする。
+with open('relativity','wt') as fout:
+    fout.write(poem)
+
+■構造化されたテキストファイル
+CSVの場合はcsvをimportして読み込み、書き込みが可能。
+XMLの場合はElementTreeを利用する。
+JSONの場合はjsonを利用。
+YAMLの場合はyamlを利用。
+configはconfigparserを利用。
+
