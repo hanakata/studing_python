@@ -1,0 +1,56 @@
+4章 SymPyで代数と式を計算する
+
+・式の記号と記号演算を定義する
+記号＝式の計算の基本要素
+
+通常、記号は変数となり代入した状態でないと利用できず、
+また記号を記号として利用できない。
+それを可能にするのがsympy
+>>> from sympy import Symbol
+>>> x = Symbol('x')
+>>> x + x + 1
+2*x + 1
+>>>
+シンボルとして設定するのは
+Symbol('x')とするかSymbols('x,y,z')とするか
+
+・式を扱う
+factor()は式を因数分解する
+expand()は式を展開し項の和として表現する。
+>>> from sympy import Symbol
+>>> x = Symbol('x')
+>>> y = Symbol('y')
+>>> from sympy import factor
+>>> expr = x**2 - y**2
+>>> factor(expr)
+(x - y)*(x + y)
+>>> factors = factor(expr)
+>>> from sympy import expand
+>>> expand(factors)
+x**2 - y**2
+>>>
+式をもう少し綺麗に見せたいと思ったらpprint()関数を利用する。
+
+級数を求める
+級数ではx^n/nで求められる。
+プログラム名：series.py
+
+・値に代入する
+symPyを使うことで代数式に値を代入することができる。
+>>> from sympy import Symbol, pprint, init_printing
+>>> from sympy import expr
+>>> x = Symbol('x')
+>>> y = Symbol('y')
+>>> x*x + x*y + x*y + y*y
+x**2 + 2*x*y + y**2
+>>> expr = x*x + x*y + x*y + y*y
+>>> res = expr.subs({x:1,y:2})
+>>> res
+9
+>>> expr.subs({x:1-y})
+y**2 + 2*y*(-y + 1) + (-y + 1)**2
+>>>
+これを使ってseries.pyを拡張
+
+・文字列を数式に変換する
+sympify()関数を利用して
